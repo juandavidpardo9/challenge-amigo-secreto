@@ -33,21 +33,30 @@ function showFriends(name) {
 }
 
 // Función para sortear un amigo aleatoriamente
-function pickFriend(button) {
+function pickFriend() {
     if (friends.length != 0) {
         let result = document.getElementById("resultado"); // Se obtiene la lista de resultados
         const randomNumber = Math.floor(Math.random() * friends.length); // Número aleatorio válido
         result.innerHTML += '<li>' + friends[randomNumber] + '</li>'; // Se muestra el amigo sorteado
+        
+        let addButton = document.getElementById("button-add"); // Se obtiene el id del botón añadir
+        let drawButton = document.getElementById("button-draw");// Se obtiene el id del botón sortear
 
-        // Se desactiva el botón para que no se pueda volver a usar
-        button.disabled = true;
-        button.style.backgroundColor = "gray";
+        // Se desactiva los botones para que no se pueda volver a usar
+        disableButton(addButton);
+        disableButton(drawButton);
     } else {
         alert("No hay amigos para sortear."); // Alerta si la lista está vacía
     }
 }
 
-// 🔹 Limpia el input del nombre
+// Desactiva un botón y lo estiliza
+function disableButton(button) {
+  button.disabled = true;
+  button.style.backgroundColor = "gray";
+}
+
+// Limpia el input del nombre
 function clearInput() {
   document.getElementById("amigo").value = "";
 }
